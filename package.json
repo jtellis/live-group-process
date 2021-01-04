@@ -5,6 +5,9 @@
   "author": "jtellis <jessetellis@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "build-server": "yarn webpack --config server.webpack.config.babel.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
