@@ -6,6 +6,9 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
   }
