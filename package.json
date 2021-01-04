@@ -4,5 +4,9 @@
   "repository": "git@github.com:jtellis/live-group-process.git",
   "author": "jtellis <jessetellis@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  }
 }
