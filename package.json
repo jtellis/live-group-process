@@ -1,0 +1,8 @@
+{
+  "name": "live-group-process",
+  "version": "1.0.0",
+  "repository": "git@github.com:jtellis/live-group-process.git",
+  "author": "jtellis <jessetellis@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
