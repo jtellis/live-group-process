@@ -6,15 +6,19 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "clean": "rm -rf dist",
     "build-server": "yarn webpack --config server.webpack.config.babel.js",
-    "build-client": "yarn webpack --config client.webpack.config.babel.js"
+    "build-client": "yarn webpack --config client.webpack.config.babel.js",
+    "dev": "yarn clean && yarn concurrently \"yarn build-client --mode development --watch\" \"yarn build-server --mode development && yarn nodemon dist/index.js\" \"yarn build-server --mode development --watch\""
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
     "babel-loader": "^8.2.2",
+    "concurrently": "^5.3.0",
     "html-webpack-plugin": "^5.0.0-beta.4",
+    "nodemon": "^2.0.6",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
   },
