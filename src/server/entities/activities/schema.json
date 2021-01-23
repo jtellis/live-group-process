@@ -1,0 +1,28 @@
+{
+    "title": "Activity",
+    "bsonType": "object",
+    "properties": {
+        "title": { "bsonType": "string" },
+        "description": { "bsonType": "string" },
+        "sections": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "object",
+                "properties": {
+                    "title": { "bsonType": "string" },
+                    "steps": {
+                        "bsonType": "array",
+                        "items": {
+                            "bsonType": "object",
+                            "properties": {
+                                "directions": { "bsonType": "string" }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "postscript": { "bsonType": "string" }
+    },
+    "required": [ "title" ]
+}
