@@ -7,6 +7,9 @@ export default {
         path: path.resolve(__dirname, 'dist'),
     },
     target: 'node',
+    experiments: {
+      topLevelAwait: true
+    },
     module: {
         rules: [
           {
