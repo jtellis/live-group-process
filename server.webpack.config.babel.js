@@ -1,4 +1,5 @@
 import path from 'path';
+import Dotenv from 'dotenv-webpack';
 
 export default {
     entry: './src/server/index.js',
@@ -10,6 +11,7 @@ export default {
     experiments: {
       topLevelAwait: true
     },
+    plugins: [ new Dotenv() ],
     module: {
         rules: [
           {
