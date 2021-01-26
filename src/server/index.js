@@ -3,6 +3,7 @@ import nodeCleanup from 'node-cleanup';
 import wsServer from './wsServer';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import api from './api';
 import path from 'path';
 import db from './db';
@@ -11,6 +12,8 @@ const staticDir = 'client';
 const app = express();
 
 app.disable('x-powered-by');
+
+app.use(helmet());
 
 app.use( express.static( path.resolve(__dirname, staticDir) ) );
 
