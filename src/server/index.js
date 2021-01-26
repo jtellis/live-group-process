@@ -1,3 +1,5 @@
+import https from 'https';
+import fs from 'fs';
 import express from 'express';
 import nodeCleanup from 'node-cleanup';
 import wsServer from './wsServer';
@@ -30,7 +32,11 @@ app.get('/*', function index(req, res) {
 db.connection.then(serve);
 
 function serve() {
-    const server = app.listen(port);
+    const options = {
+        key: fs.readFileSync('./key.pem'),
+        cert: fs.readFileSync('./cert.pem')
+    };
+    const server = https.createServer(options, app).listen(port);
 
     server.on('upgrade', (req, socket, head) => {
         wsServer.handleUpgrade(req, socket, head, function done(ws) {
