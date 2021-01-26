@@ -7,12 +7,11 @@ const client = await db.connection;
 let collectionExists = await client
     .listCollections({ name: 'activities' })
     .hasNext();
-if(collectionExists == false) {
-    const activities = await init();
-} else {
-    const activities = client.collection('activities');
-}
 
+const activities = collectionExists
+    ? client.collection("activities")
+    : await init();
+  
 function init() {
     return client.createCollection('activities', {
         validator: { $jsonSchema: schema }
