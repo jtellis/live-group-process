@@ -27,5 +27,13 @@ export default {
             }
           }
         ]
+    },
+    module: {
+      rules: [
+        {
+          test: /\.graphql/i,
+          use: 'raw-loader'
+        }
+      ]
     }
 };
