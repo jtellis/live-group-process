@@ -6,6 +6,7 @@ import wsServer from './wsServer';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import { auth } from './auth';
 import api from './api';
 import path from 'path';
 import db from './db';
@@ -41,6 +42,8 @@ app.use( express.static( path.resolve(__dirname, staticDir) ) );
 app.use( bodyParser.json() );
 
 app.use( morgan('combined') );
+
+app.use( auth({ auth0Logout: true }) );
 
 app.use('/api', api);
 
