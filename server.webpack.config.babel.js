@@ -31,7 +31,7 @@ export default {
     module: {
       rules: [
         {
-          test: /\.graphql/i,
+          test: /\.g(?:raph)?ql/i,
           use: 'raw-loader'
         }
       ]
