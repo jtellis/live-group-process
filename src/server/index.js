@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
         work-around for React Developer Tools CSP violation
         https://github.com/facebook/react/issues/17997
     */
-    app.use(helmet({
+    app.use( helmet({
         contentSecurityPolicy: {
             directives: {
                 ...helmet.contentSecurityPolicy.getDefaultDirectives(),
@@ -33,12 +33,12 @@ if (process.env.NODE_ENV === 'development') {
         }
     }));
 } else {
-    app.use(helmet());
+    app.use( helmet() );
 }
 
 app.use( express.static( path.resolve(__dirname, staticDir) ) );
 
-app.use(bodyParser.json());
+app.use( bodyParser.json() );
 
 app.use( morgan('combined') );
 
