@@ -15,7 +15,26 @@ const app = express();
 
 app.disable('x-powered-by');
 
-app.use(helmet());
+if (process.env.NODE_ENV === 'development') {
+    /*
+        work-around for React Developer Tools CSP violation
+        https://github.com/facebook/react/issues/17997
+    */
+    app.use(helmet({
+        contentSecurityPolicy: {
+            directives: {
+                ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+                "script-src": [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "'unsafe-eval'"
+                ]
+            }
+        }
+    }));
+} else {
+    app.use(helmet());
+}
 
 app.use( express.static( path.resolve(__dirname, staticDir) ) );
 
