@@ -1,0 +1,15 @@
+type Step {
+    directions: String
+}
+
+type Section {
+    title: String,
+    steps: [Step]
+}
+
+type Activity {
+    title: String,
+    description: String,
+    sections: [Section],
+    postscript: String
+}
