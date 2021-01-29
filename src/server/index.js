@@ -45,7 +45,7 @@ app.use( morgan('combined') );
 
 app.use( auth({ auth0Logout: true }) );
 
-app.use('/api', api);
+app.use('/graphql', api);
 
 app.get('/*', function index(req, res) {
     res.sendFile( path.resolve(__dirname, staticDir, 'index.html') );
