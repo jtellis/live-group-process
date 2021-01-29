@@ -1,9 +1,11 @@
 import express from 'express';
-import db from '../db';
-import activities from './activities';
+import { buildSchema } from 'graphql';
+import { graphqlHTTP } from 'express-graphql';
+import schema from './schema';
+import resolver from './resolver';
 
-const api = express();
-
-api.use('/activities', activities);
-
-export default api;
+export default graphqlHTTP({
+    schema: buildSchema(schema),
+    rootValue: resolver,
+    graphiql: process.env.NODE_ENV === 'development' ? true : false
+});
