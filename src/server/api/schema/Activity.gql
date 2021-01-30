@@ -8,6 +8,7 @@ type Section {
 }
 
 type Activity {
+    _id: ID,
     title: String,
     description: String,
     sections: [Section],

@@ -1,4 +1,4 @@
 type Query {
     activities: [Activity]
-    activity(id: String!): Activity
+    activity(_id: ID!): Activity
 }

@@ -4,8 +4,8 @@ async function activities() {
     return await entity.getAll();
 };
 
-async function activity({ id }) {
-    return await entity.getOne(id);
+async function activity({ _id }) {
+    return await entity.getOne(_id);
 }
 
 export default {
