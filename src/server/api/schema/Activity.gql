@@ -7,26 +7,26 @@ input StepInput {
 }
 
 type Section {
-    title: String,
+    title: String
     steps: [Step]
 }
 
 input SectionInput {
-    title: String,
+    title: String
     steps: [StepInput]
 }
 
 type Activity {
     _id: ID,
-    title: String,
-    description: String,
-    sections: [Section],
+    title: String
+    description: String
+    sections: [Section]
     postscript: String
 }
 
 input ActivityInput {
-    title: String,
-    description: String,
-    sections: [SectionInput],
+    title: String
+    description: String
+    sections: [SectionInput]
     postscript: String
 }
