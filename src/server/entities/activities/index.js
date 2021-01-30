@@ -22,7 +22,7 @@ function getAll() {
     return activities.find().toArray();
 }
 
-async function getOne(id) {
+function getOne(id) {
     return activities.findOne({_id: new ObjectId(id)});
 }
 
