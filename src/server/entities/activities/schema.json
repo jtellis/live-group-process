@@ -10,11 +10,13 @@
                 "bsonType": "object",
                 "properties": {
                     "title": { "bsonType": "string" },
+                    "position": { "bsonType": "int" },
                     "steps": {
                         "bsonType": "array",
                         "items": {
                             "bsonType": "object",
                             "properties": {
+                                "position": { "bsonType": "int" },
                                 "directions": { "bsonType": "string" }
                             }
                         }

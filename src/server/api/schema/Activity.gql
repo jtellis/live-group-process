@@ -1,17 +1,21 @@
 type Step {
+    poisition: Int
     directions: String
 }
 
 input StepInput {
+    poisition: Int
     directions: String
 }
 
 type Section {
+    poisition: Int
     title: String
     steps: [Step]
 }
 
 input SectionInput {
+    poisition: Int
     title: String
     steps: [StepInput]
 }
