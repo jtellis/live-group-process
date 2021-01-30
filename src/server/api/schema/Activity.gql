@@ -2,9 +2,18 @@ type Step {
     directions: String
 }
 
+input StepInput {
+    directions: String
+}
+
 type Section {
     title: String,
     steps: [Step]
+}
+
+input SectionInput {
+    title: String,
+    steps: [StepInput]
 }
 
 type Activity {
@@ -12,5 +21,12 @@ type Activity {
     title: String,
     description: String,
     sections: [Section],
+    postscript: String
+}
+
+input ActivityInput {
+    title: String,
+    description: String,
+    sections: [SectionInput],
     postscript: String
 }
