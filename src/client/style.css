@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply
+            p-2
+            bg-primary-600
+            text-white
+            text-sm
+            font-semibold
+            rounded-lg
+            shadow-md
+            hover:bg-primary-800
+            focus:outline-none
+            focus:ring-2
+            focus:ring-primary-500
+            focus:ring-opacity-75;
+    }
+}
+
+body {
+    @apply
+        m-8
+        grid
+        justify-items-center;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+    @apply btn;
+}

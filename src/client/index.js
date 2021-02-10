@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Activity from './Activity';
+import CreateActivity from './CreateActivity';
+import './style.css';
 
 function App() {
-    return <Activity />;
+    return <CreateActivity />;
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
