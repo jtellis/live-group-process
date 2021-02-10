@@ -1,0 +1,41 @@
+input[type="text"] {
+    @apply
+        border-b
+        border-secondary-400;
+}
+
+input#title {
+    @apply text-2xl;
+}
+
+.quill-container {
+    @apply py-4;
+}
+
+.sections > .header {
+    @apply text-xl;
+}
+
+.section {
+    @apply p-2;
+}
+
+.section > .header {
+    @apply text-lg;
+}
+
+.section > .steps {
+    @apply
+        list-decimal
+        px-8
+        py-2;
+}
+
+.steps > li {
+}
+
+.section > .steps > li {
+    @apply
+        px-2
+        py-1;
+}
