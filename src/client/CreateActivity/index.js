@@ -15,7 +15,7 @@ function CreateActivity() {
                 directions: ''
             }]
         }],
-        ps: ''
+        postscript: ''
     });
 
     useEffect(function instantiateQuills() {
@@ -107,8 +107,33 @@ function CreateActivity() {
         </form>
     );
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+        
+        let res = await fetch('/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: `
+                    mutation CreateActivity($input: ActivityInput) {
+                        createActivity(input: $input) {
+                            _id
+                        }
+                    }
+                `,
+                variables: { input: activity }
+            }),
+        });
+
+        /* DEV */
+        let result = await res.json();
+
+        let { data: { createActivity: { _id } } } = result;
+
+        console.log(_id);
+        /* /DEV */
     }
 
     function handleTitleChange(e) {
@@ -128,10 +153,10 @@ function CreateActivity() {
     }
 
     function handlePsChange(quill) {
-        let ps = quill.getText();
+        let postscript = quill.getText();
         setActivity({
             ...activity,
-            ps
+            postscript
         });
     }
 
