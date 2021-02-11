@@ -1,6 +1,9 @@
 {
     "presets": [
         ["@babel/preset-env", { "targets": "current node" }]
+    ],
+    "plugins": [
+        "@babel/plugin-transform-runtime"
     ]
 }
   
