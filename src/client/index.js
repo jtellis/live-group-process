@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import CreateActivity from './CreateActivity';
+const CreateActivity = lazy(() => import('./CreateActivity'));
 import './style.css';
 
 function App() {
     
     return (
         <React.StrictMode>
-            <CreateActivity />
+            <Router>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Switch>
+                        <Route exact path="/">
+                            <CreateActivity />
+                        </Route>
+                    </Switch>
+                </Suspense>
+            </Router>
         </React.StrictMode>
     );
 }
