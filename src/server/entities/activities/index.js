@@ -26,8 +26,11 @@ function getOne(id) {
     return activities.findOne({_id: new ObjectId(id)});
 }
 
-function create(activity) {
-    return activities.insertOne(activity);
+function create(user, activity) {
+    return activities.insertOne({
+        ...activity,
+        creator: user.sub
+    });
 }
 
 export default {

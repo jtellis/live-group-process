@@ -8,8 +8,9 @@ async function activity({ _id }) {
     return await entity.getOne(_id);
 }
 
-async function createActivity({ input }) {
-    let commandResult = await entity.create(input);
+async function createActivity(input, req) {
+    let { oidc: { user } } = req;
+    let commandResult = await entity.create(user, input);
     return commandResult.ops[0];
 }
 
