@@ -12,6 +12,10 @@ input#title {
     @apply py-4;
 }
 
+.quill-container > .ql-toolbar {
+    @apply p-1;
+}
+
 .sections > .header {
     @apply text-xl;
 }
