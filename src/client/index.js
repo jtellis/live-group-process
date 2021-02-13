@@ -4,7 +4,12 @@ import CreateActivity from './CreateActivity';
 import './style.css';
 
 function App() {
-    return <CreateActivity />;
+    
+    return (
+        <React.StrictMode>
+            <CreateActivity />
+        </React.StrictMode>
+    );
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
