@@ -2,6 +2,7 @@
     "title": "Activity",
     "bsonType": "object",
     "properties": {
+        "creator": { "bsonType": "string" },
         "title": { "bsonType": "string" },
         "description": { "bsonType": "string" },
         "sections": {
