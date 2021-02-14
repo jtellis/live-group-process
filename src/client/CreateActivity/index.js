@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useReducer } from 'react';
+import reducer from './reducer';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import './style.css';
@@ -6,7 +7,7 @@ import './style.css';
 function CreateActivity() {
     const descRef = useRef(null);
     const psRef = useRef(null);
-    const [activity, setActivity] = useState({
+    let initialState = {
         title: '',
         description: '',
         sections: [{
@@ -16,7 +17,8 @@ function CreateActivity() {
             }]
         }],
         postscript: ''
-    });
+    };
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(function instantiateQuills() {
         const baseConfig = {
@@ -42,8 +44,17 @@ function CreateActivity() {
             placeholder: 'Final thoughts...',
         });
 
-        desc.on('text-change', () => handleDescChange(desc));
-        ps.on('text-change', () => handleDescChange(ps));
+        desc.on('text-change',
+            () => dispatch({
+                type: 'changeDescription',
+                payload: desc.getText()
+            }));
+        
+        ps.on('text-change',
+            () => dispatch({
+                type: 'changePostscript',
+                payload: ps.getText()
+            }));
     }, []);
 
     return (
@@ -52,9 +63,14 @@ function CreateActivity() {
                 name="title"
                 id="title"
                 placeholder="Title..."
-                value={ activity.title }
+                value={ state.title }
                 type="text"
-                onChange={ handleTitleChange }
+                onChange={
+                    e => dispatch({
+                        type: 'changeTitle',
+                        payload: e.target.value
+                    })
+                }
                 required
             />
 
@@ -66,7 +82,7 @@ function CreateActivity() {
                 <span className="header">
                     Directions
                 </span>
-                { activity.sections.map((section, sectionIdx) => (
+                { state.sections.map((section, sectionIdx) => (
                     <div key={`section-${sectionIdx}`} className="section">
                         <input
                             name={`section-${sectionIdx}-title`}
@@ -74,7 +90,17 @@ function CreateActivity() {
                             placeholder="Section title..."
                             type="text"
                             required
-                            onChange={ e => handleSectionTitleChange(e, sectionIdx) }
+                            onChange={
+                                e => {
+                                    dispatch({
+                                        type: 'changeSectionTitle',
+                                        payload: {
+                                            title: e.target.value,
+                                            sectionIdx
+                                        }
+                                    })
+                                }
+                            }
                         />
                         <ol className="steps">
                             { section.steps.map((step, stepIdx) => (
@@ -85,19 +111,46 @@ function CreateActivity() {
                                         placeholder={`Step #${stepIdx + 1}...`}
                                         type="text"
                                         required
-                                        onChange={ e => handleStepDirectionsChange(e, sectionIdx, stepIdx) }
+                                        onChange={
+                                            e => {
+                                                dispatch({
+                                                    type: 'changeStepDirections',
+                                                    payload: {
+                                                        directions: e.target.value,
+                                                        sectionIdx,
+                                                        stepIdx
+                                                    }
+                                                })
+                                            }
+                                        }
                                     />
                                 </li>
                             )) }
                         </ol>
-                        <button onClick={ e => addStep(e, sectionIdx) }>
+                        <button
+                            onClick={
+                                e => {
+                                    e.preventDefault();
+                                    dispatch({ type: 'addStep', payload: { sectionIdx } })
+                                }
+                            }
+                        >
                             Add a step
                         </button>
                     </div>
                 )) }
             </div>
 
-            <button onClick={ addSection }>Add a section</button>
+            <button
+                onClick={
+                    e => {
+                        e.preventDefault();
+                        dispatch({ type: 'addSection' })
+                    }
+                }
+            >
+                Add a section
+            </button>
 
             <div className="quill-container">
                 <div ref={ psRef } />
@@ -123,81 +176,15 @@ function CreateActivity() {
                         }
                     }
                 `,
-                variables: { input: activity }
+                variables: { input: state }
             }),
         });
 
-        /* DEV */
         let result = await res.json();
 
         let { data: { createActivity: { _id } } } = result;
 
         console.log(_id);
-        /* /DEV */
-    }
-
-    function handleTitleChange(e) {
-        let title = e.target.value;
-        setActivity({
-            ...activity,
-            title
-        });
-    }
-
-    function handleDescChange(quill) {
-        let description = quill.getText();
-        setActivity({
-            ...activity,
-            description
-        });
-    }
-
-    function handlePsChange(quill) {
-        let postscript = quill.getText();
-        setActivity({
-            ...activity,
-            postscript
-        });
-    }
-
-    function handleSectionTitleChange(e, sectionIdx) {
-        let title = e.target.value;
-        let sections = [...activity.sections];
-        sections[sectionIdx].title = title;
-        setActivity({
-            ...activity,
-            sections
-        });
-    }
-
-    function handleStepDirectionsChange(e, sectionIdx, stepIdx) {
-        let directions = e.target.value;
-        let sections = [...activity.sections];
-        sections[sectionIdx].steps[stepIdx].directions = directions;
-        setActivity({
-            ...activity,
-            sections
-        });
-    }
-
-    function addStep(e, sectionIdx) {
-        e.preventDefault();
-        let sections = [...activity.sections];
-        sections[sectionIdx].steps.push({ directions: '' });
-        setActivity({
-            ...activity,
-            sections
-        });
-    }
-    
-    function addSection(e) {
-        e.preventDefault();
-        let sections = [...activity.sections];
-        sections.push({ title: '', steps: [{ directions: '' }] });
-        setActivity({
-            ...activity,
-            sections
-        });
     }
 }
 
