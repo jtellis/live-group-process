@@ -26,9 +26,11 @@ function CreateActivity() {
             debug: process.env.NODE_ENV === 'development',
             modules:{
                 toolbar: [
+                /*
                     [{ 'header': [1, 2, 3, false] }],
                     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                    /* [{ 'list': 'ordered'}, { 'list': 'bullet' }] */
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+                */
                 ]
             },
             theme: 'snow'
