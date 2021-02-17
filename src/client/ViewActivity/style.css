@@ -1,0 +1,50 @@
+h1 {
+    @apply
+        text-2xl
+        pl-1
+        border-l
+        border-accent-400;
+}
+
+p.description,
+p.postscript {
+    @apply
+        text-lg
+        p-4
+        max-w-xl;
+}
+
+.sections > .header {
+    @apply
+        text-xl
+        px-2
+        pt-2
+        pb-4;
+}
+
+.section {
+    @apply
+        px-4
+        py-2;
+}
+
+
+.section > .header {
+    @apply
+        text-lg
+        border-b
+        border-secondary-400;
+}
+
+.section > .steps {
+    @apply
+        list-decimal
+        px-8
+        py-2;
+}
+
+.section > .steps > li {
+    @apply
+        px-2
+        py-1;
+}
