@@ -1,4 +1,5 @@
 type Query {
     activities: [Activity]
+    myActivities: [Activity]
     activity(_id: ID!): Activity
 }

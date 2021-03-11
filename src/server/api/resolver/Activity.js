@@ -4,6 +4,11 @@ async function activities() {
     return await entity.getAll();
 };
 
+async function myActivities(_, req) {
+    let { oidc: { user } } = req;
+    return await entity.getByCreator(user);
+}
+
 async function activity({ _id }) {
     return await entity.getOne(_id);
 }
@@ -16,6 +21,7 @@ async function createActivity({ input }, req) {
 
 export default {
     activities,
+    myActivities,
     activity,
     createActivity
 };

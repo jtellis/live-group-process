@@ -22,6 +22,10 @@ function getAll() {
     return activities.find().toArray();
 }
 
+function getByCreator(user) {
+    return activities.find({ creator: user.sub }).toArray();
+}
+
 function getOne(id) {
     return activities.findOne({_id: new ObjectId(id)});
 }
@@ -35,6 +39,7 @@ function create(user, activity) {
 
 export default {
     getAll,
+    getByCreator,
     getOne,
     create
 }
