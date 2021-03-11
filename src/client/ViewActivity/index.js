@@ -48,14 +48,14 @@ function ViewActivity({ _id }) {
     return (
         <div>
             <h1>{ state.title }</h1>
-            <p class="description">{ state.description }</p>
+            <p className="description">{ state.description }</p>
             <div className="sections">
                 <div className="header">
                     Directions
                 </div>
                 { state.sections.map((section, sectionIdx) => (
                     <div key={`section-${sectionIdx}`} className="section">
-                        <span class="header">{ section.title }</span>
+                        <span className="header">{ section.title }</span>
                         <ol className="steps">
                             { section.steps.map((step, stepIdx) => (
                                 <li key={`step-${stepIdx}`}>{ step.directions }</li>
@@ -64,7 +64,7 @@ function ViewActivity({ _id }) {
                     </div>
                 )) }
             </div>
-            <p class="postscript">{ state.description }</p>
+            <p className="postscript">{ state.description }</p>
         </div>
     );
 }
