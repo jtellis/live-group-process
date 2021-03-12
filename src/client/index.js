@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 const ViewActivity = lazy(() => import('./ViewActivity'));
 const CreateActivity = lazy(() => import('./CreateActivity'));
 const MyActivitiesList = lazy(() => import('./MyActivitiesList'));
+import SuspenseFallback from './SuspenseFallback';
 import './style.css';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     return (
         <React.StrictMode>
             <Router>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<SuspenseFallback />}>
                     <Switch>
                         <Route exact path="/">
                             <CreateActivity />

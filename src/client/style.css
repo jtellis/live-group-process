@@ -20,7 +20,12 @@
     }
 }
 
+html {
+    @apply h-screen;
+}
+
 body {
+    min-height: calc(100vh - theme('margin.8') * 2);
     @apply
         m-8
         grid
